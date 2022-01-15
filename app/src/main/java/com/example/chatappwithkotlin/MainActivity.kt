@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.Switch
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var mDbref : DatabaseReference
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         userRcv = findViewById(R.id.rcvusers)
         userRcv.layoutManager = LinearLayoutManager(this)
         userRcv.adapter = adapter
+
+
+
 
 
         gettingTheusers()
@@ -83,29 +89,49 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu,menu)
-        return super.onCreateOptionsMenu(menu)
+        return true
+       // return super.onCreateOptionsMenu(menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == R.id.logout){
-            mAuth.signOut()
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-            return true
-        }
+        when (item.itemId) {
+            R.id.logout -> {
+                mAuth.signOut()
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
+            }
+            R.id.settings -> {
+                startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+                finish()
+            }
 
-        return true
+        }
+        return super.onOptionsItemSelected(item)
+//        if(item.itemId == R.id.logout){
+//
+//            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//            return true
+//        }
+//
+//        return true
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             // moveTaskToBack(true);
-            val intent = Intent(Intent.ACTION_MAIN)
-            intent.addCategory(Intent.CATEGORY_HOME)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            mAuth.signOut()
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
+
+//            val intent = Intent(Intent.ACTION_MAIN)
+//            intent.addCategory(Intent.CATEGORY_HOME)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(intent)
             return true
         }
         return super.onKeyDown(keyCode, event)

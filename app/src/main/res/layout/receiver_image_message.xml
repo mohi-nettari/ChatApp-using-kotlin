@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/rcvimgr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+
+        android:padding="6dp"
+
+        android:gravity="start"
+
+        android:background="@drawable/bg_img_rec"
+
+
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/rimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:adjustViewBounds="true"
+
+            android:padding="10dp"
+
+
+            android:maxHeight="300dp"
+            android:minHeight="250dp"
+            android:maxWidth="300dp"
+            android:minWidth="250dp"
+
+            android:layout_centerInParent="true"
+
+            android:scaleType="fitCenter"
+
+            android:src="@drawable/ic_image_24"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar" />
+
+        />
+
+
+
+        <TextView
+            android:id="@+id/rtxttimee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/rimg"
+            android:layout_alignStart="@+id/rimg"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+
+            android:gravity="start"
+            android:fontFamily="@font/robotolight"
+            android:text="03/12/2022  3:00 PM"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

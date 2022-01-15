@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_img_rec.xml" value="0.2388888888888889" />
+        <entry key="app/src/main/res/drawable/bg_img_sender.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/drawable/bg_reciever.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/bg_sender.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/drop_shap_unfilled2.xml" value="0.2574074074074074" />
@@ -13,6 +15,7 @@
         <entry key="app/src/main/res/drawable/drop_shape_unfilled.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/drop_shape_unfilled2.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/et_sh.xml" value="0.2574074074074074" />
+        <entry key="app/src/main/res/drawable/et_sha.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/drawable/et_shadows.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/google_btn.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2574074074074074" />
@@ -23,15 +26,21 @@
         <entry key="app/src/main/res/drawable/ic_key_24.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/raduis.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/raduis_lay.xml" value="0.2574074074074074" />
+        <entry key="app/src/main/res/drawable/settings_options_layout.xml" value="0.24537037037037038" />
         <entry key="app/src/main/res/drawable/squar_btn.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/squar_shape.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/unfilled_sqar.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_privacy.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_regestration.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/image_message.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/receiver_image_message.xml" value="0.1274062816616008" />
         <entry key="app/src/main/res/layout/reicever_msg.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/sender_msg.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/sender_image_message.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/sender_msg.xml" value="0.25" />
         <entry key="app/src/main/res/layout/user_lay.xml" value="0.2" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.2462962962962963" />
       </map>

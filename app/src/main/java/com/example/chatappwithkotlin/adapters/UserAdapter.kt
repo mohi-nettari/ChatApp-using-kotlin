@@ -43,7 +43,6 @@ class UserAdapter(val context: Context , val userslist: ArrayList<User>) : Recyc
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
-
             intent.putExtra("recid", currentuser.userid)
             intent.putExtra("image", currentuser.image)
             intent.putExtra("name", currentuser.name)

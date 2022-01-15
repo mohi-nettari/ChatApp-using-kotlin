@@ -1,14 +1,13 @@
 package com.example.chatappwithkotlin.model
 
-import java.util.*
+class Imagemsg {
 
-class Messages {
 
-    var msg : String? = null
+
+    var imageuri : String? = null
     var uid : String? = null
     var receiverid : String? = null
-    var messageid : String? = null
-    var timstamp : Date? = null
+    var timstamp : Long? = null
     var isSeen : Boolean? = null
     var type : String? = null
 
@@ -17,57 +16,13 @@ class Messages {
     }
 
     constructor(
-        msg: String?,
+        imageuri : String?,
         uid: String?,
         receiverid: String?,
-        messageid : String?,
-        timstamp: Date?,
-        isSeen: Boolean?,
-        type: String?
-        ) {
-        this.msg = msg
-        this.uid = uid
-        this.receiverid = receiverid
-        this.messageid = messageid
-        this.timstamp = timstamp
-        this.isSeen = isSeen
-        this.type = type
-    }
-
-
-    constructor( msg: String,senderid: String?, receiverid: String?,type: String?) {
-        this.msg = msg
-        this.uid = uid
-        this.receiverid = receiverid
-        this.type = type
-    }
-
-    constructor(
-        msg: String?,
-        uid: String?,
-        receiverid: String?,
+        timstamp: Long?,
         isSeen: Boolean?,
         type: String?
     ) {
-        this.msg = msg
-        this.uid = uid
-        this.receiverid = receiverid
-        this.isSeen = isSeen
-        this.type = type
-
-    }
-
-
-
-    constructor(
-        msg: String?,
-        uid: String?,
-        receiverid: String?,
-        timstamp: Date?,
-        isSeen: Boolean?,
-        type: String?
-    ) {
-        this.msg = msg
         this.uid = uid
         this.receiverid = receiverid
         this.timstamp = timstamp
@@ -76,5 +31,24 @@ class Messages {
     }
 
 
+    constructor( imageuri : String?,senderid: String?, receiverid: String?,type: String?) {
+        this.uid = uid
+        this.receiverid = receiverid
+        this.type = type
+    }
+
+    constructor(
+        imageuri : String?,
+        uid: String?,
+        receiverid: String?,
+        isSeen: Boolean?,
+        type: String?
+    ) {
+        this.uid = uid
+        this.receiverid = receiverid
+        this.isSeen = isSeen
+        this.type = type
+
+    }
 
 }
