@@ -2,13 +2,22 @@ package com.example.chatappwithkotlin
 
 import android.app.Activity
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Rect
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
 import android.provider.MediaStore
+import android.util.TypedValue
+import android.view.KeyEvent
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsAnimation
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappwithkotlin.adapters.MessageAdapter
@@ -66,6 +75,7 @@ class ChatActivity : AppCompatActivity() {
 
 
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -95,8 +105,9 @@ class ChatActivity : AppCompatActivity() {
         messagesrcv.adapter = adapter
 
 
+
         txtname.setText(userName)
-      //  updating the views in chat lyout
+        //  updating the views in chat lyout
         Picasso.get().load(userPic).placeholder(R.drawable.avatar).into(imageview)
 
         displaymsgs()
@@ -106,6 +117,8 @@ class ChatActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             sendMsg(msg,senderId,recieverId,false,"message")
+            messagesrcv.scrollToPosition(messageslist.size - 1);
+
 
         }
 
@@ -123,29 +136,29 @@ class ChatActivity : AppCompatActivity() {
     }
 
 
-
     private fun displaymsgs() {
         mDatabaseref.child("Chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                messageslist.clear()
-                for (postSnapshot in snapshot.children){
-                    val currentMessage = postSnapshot.getValue(Messages::class.java)
-                    if (mAuth.currentUser?.uid == currentMessage?.uid
-                        || mAuth.currentUser?.uid == currentMessage?.receiverid ){
-                        messageslist.add(currentMessage!!)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    messageslist.clear()
+                    for (postSnapshot in snapshot.children){
+                        val currentMessage = postSnapshot.getValue(Messages::class.java)
+                        if (mAuth.currentUser?.uid == currentMessage?.uid
+                            || mAuth.currentUser?.uid == currentMessage?.receiverid ){
+                            messageslist.add(currentMessage!!)
+                        }
                     }
+                    adapter.notifyDataSetChanged()
+                    messagesrcv.scrollToPosition(messageslist.size - 1);
+
                 }
-                adapter.notifyDataSetChanged()
 
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
 
 
-        })
+            })
 
 
     }
@@ -194,7 +207,7 @@ class ChatActivity : AppCompatActivity() {
 
                         mDatabaseref.child("Chats").child(senderRoom)
                             .child("messages").push()
-                           .setValue(Messages(uri.toString(),senderId, recieverId,Calendar.getInstance().time,false,"image"))
+                            .setValue(Messages(uri.toString(),senderId, recieverId,Calendar.getInstance().time,false,"image"))
                             .addOnSuccessListener {
                                 Toast.makeText(this@ChatActivity, "sended image", Toast.LENGTH_SHORT).show()
                                 mDatabaseref.child("Chats").child(recieverRoom)
