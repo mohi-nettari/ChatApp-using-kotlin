@@ -11,9 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/backarrow"
+        android:layout_below="@id/rl1"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -39,13 +40,6 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Name :"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/usernameet"
@@ -53,10 +47,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="@font/robotolight"
                 android:hint="Enter Your Name"
                 android:inputType="textPersonName"
                 android:padding="15dp"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/lightgrey"
+                android:textColorHint="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,14 +62,6 @@
             android:layout_marginTop="6dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="About :       "
-                android:textColor="@color/white"
-                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/aboutet"
@@ -80,10 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="@font/robotolight"
                 android:hint="About You"
                 android:inputType="textPersonName"
                 android:padding="15dp"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -92,32 +84,61 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginTop="5dp"
-
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/save_btn"
+            android:fontFamily="@font/robotoblack"
+            android:padding="15dp"
             android:text="Save"
             android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/backarrow"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/arrow_left"
-        app:tint="@color/white" />
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <ImageView
+            android:id="@+id/backarrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/arrow_left"
+            app:tint="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/settingsact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/robotolight"
+            android:padding="10dp"
+            android:text="Settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="40dp"
         android:background="@drawable/settings_options_layout"
         android:orientation="vertical"
-        android:padding="40dp">
+
+        android:padding="30dp"
+        >
 
         <TextView
             android:id="@+id/Privacy"
@@ -126,6 +147,7 @@
             android:layout_marginStart="40dp"
             android:drawableLeft="@drawable/ic_baseline_privacy_tip_24"
             android:drawablePadding="15dp"
+            android:fontFamily="@font/robotoblack"
             android:padding="10dp"
             android:text="Privacy"
             android:textColor="@color/black"
@@ -139,8 +161,10 @@
             android:layout_marginStart="40dp"
             android:drawableLeft="@drawable/info"
             android:drawablePadding="15dp"
+            android:fontFamily="@font/robotoblack"
             android:padding="10dp"
             android:text="About Us"
+
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -152,6 +176,7 @@
             android:layout_marginStart="40dp"
             android:drawableLeft="@drawable/friends"
             android:drawablePadding="15dp"
+            android:fontFamily="@font/robotoblack"
             android:padding="10dp"
             android:text="Invite Friends"
             android:textColor="@color/black"
@@ -165,6 +190,7 @@
             android:layout_marginStart="40dp"
             android:drawableLeft="@drawable/ic_baseline_notifications_24"
             android:drawablePadding="15dp"
+            android:fontFamily="@font/robotoblack"
             android:padding="10dp"
             android:text="Notifaction"
             android:textColor="@color/black"
@@ -178,6 +204,7 @@
             android:layout_marginStart="40dp"
             android:drawableLeft="@drawable/help"
             android:drawablePadding="15dp"
+            android:fontFamily="@font/robotoblack"
             android:padding="10dp"
             android:text="Help"
             android:textColor="@color/black"

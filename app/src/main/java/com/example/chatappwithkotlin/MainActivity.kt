@@ -1,6 +1,7 @@
 package com.example.chatappwithkotlin
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappwithkotlin.adapters.UserAdapter
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mAuth  = FirebaseAuth.getInstance()
+
+        supportActionBar?.setTitle("Chats")
+        supportActionBar?.setCustomView(R.layout.layout_action_bar)
+
 
         mDbref = FirebaseDatabase.getInstance().getReference()
         usrslist = ArrayList()

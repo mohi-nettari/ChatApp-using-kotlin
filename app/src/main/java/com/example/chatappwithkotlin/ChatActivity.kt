@@ -123,6 +123,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
 
+
     private fun displaymsgs() {
         mDatabaseref.child("Chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener{

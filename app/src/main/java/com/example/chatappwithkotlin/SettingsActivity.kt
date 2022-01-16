@@ -56,6 +56,7 @@ class SettingsActivity : AppCompatActivity() {
         privacy = findViewById(R.id.Privacy)
 
 
+        supportActionBar?.hide()
 
         //updating user information
         savebtn.setOnClickListener {

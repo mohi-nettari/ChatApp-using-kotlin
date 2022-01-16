@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/actionbarmain.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/bg_img_rec.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/drawable/bg_img_sender.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/drawable/bg_reciever.xml" value="0.25092592592592594" />
@@ -35,8 +36,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_privacy.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_regestration.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.16" />
         <entry key="app/src/main/res/layout/image_message.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_action_bar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/receiver_image_message.xml" value="0.1274062816616008" />
         <entry key="app/src/main/res/layout/reicever_msg.xml" value="0.25" />
         <entry key="app/src/main/res/layout/sender_image_message.xml" value="0.2" />
