@@ -80,8 +80,9 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 //
-        supportActionBar?.hide()
 
+        //initialization
+        supportActionBar?.hide()
         mAuth = FirebaseAuth.getInstance()
         mDatabaseref = FirebaseDatabase.getInstance().getReference()
         mDbstorage = FirebaseStorage.getInstance()
@@ -104,13 +105,15 @@ class ChatActivity : AppCompatActivity() {
         messagesrcv.layoutManager = LinearLayoutManager(this)
         messagesrcv.adapter = adapter
 
+        displaymsgs()
 
+        onEnterKey()
 
         txtname.setText(userName)
         //  updating the views in chat lyout
         Picasso.get().load(userPic).placeholder(R.drawable.avatar).into(imageview)
 
-        displaymsgs()
+        //send arrow event
         sendarrow.setOnClickListener{
             val  msg = etmsg.text.toString()
             if(msg.isEmpty()){
@@ -118,15 +121,16 @@ class ChatActivity : AppCompatActivity() {
             }
             sendMsg(msg,senderId,recieverId,false,"message")
             messagesrcv.scrollToPosition(messageslist.size - 1);
-
-
         }
 
+        //back arrow event
         backarrow.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
+
+        //send pics event
         sendfiles.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -135,7 +139,27 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+    //handling on enter key click event
+private fun onEnterKey(){
 
+    etmsg.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+            val  msg = etmsg.text.toString()
+            if(msg.isEmpty()){
+                return@OnKeyListener false
+            }
+            sendMsg(msg,senderId,recieverId,false,"message")
+            messagesrcv.scrollToPosition(messageslist.size - 1);
+
+            return@OnKeyListener true
+        }
+
+        false
+    })
+
+}
+
+    //displaying messages from the database on the recycler view
     private fun displaymsgs() {
         mDatabaseref.child("Chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object : ValueEventListener{
@@ -163,6 +187,8 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+
+    //sending messages to the database
     private fun sendMsg(msg: String, senderId: String, recieverId: String, b: Boolean , type : String) {
         etmsg.setText("")
 
@@ -170,7 +196,6 @@ class ChatActivity : AppCompatActivity() {
             .child(senderRoom).child("messages").push()
             .setValue(Messages(msg, senderId, recieverId,false,"message"))
             .addOnSuccessListener {
-                Toast.makeText(this@ChatActivity, "sended", Toast.LENGTH_SHORT).show()
                 mDatabaseref.child("Chats").child(recieverRoom).child("messages").push()
                     .setValue(Messages(msg, senderId, recieverId,false,"message"))
                     .addOnSuccessListener {
@@ -182,6 +207,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
 
+    //after the user chooses a pic to send
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == IMAGE_SEND_CODE){

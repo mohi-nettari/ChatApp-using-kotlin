@@ -32,6 +32,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var profilepic : ImageView
     private lateinit var changepic : ImageView
     private lateinit var privacy : TextView
+    private lateinit var backarrow : ImageView
 
 
     companion object{
@@ -55,8 +56,19 @@ class SettingsActivity : AppCompatActivity() {
         changepic = findViewById(R.id.changepic)
         privacy = findViewById(R.id.Privacy)
 
+        backarrow = findViewById(R.id.Privacy)
+
 
         supportActionBar?.hide()
+
+
+
+        //back arrow event
+        //back arrow event
+        backarrow.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         //updating user information
         savebtn.setOnClickListener {
@@ -76,12 +88,14 @@ class SettingsActivity : AppCompatActivity() {
 
         }
 
+
         //changing the password
         privacy.setOnClickListener {
             val intent = Intent(this, PrivacyActivity::class.java)
             startActivity(intent)
 
         }
+
 
         //getting user information
         mDb.getReference().child("Users")
@@ -105,13 +119,16 @@ class SettingsActivity : AppCompatActivity() {
 
             })
 
+
         //changing the user profile pic
         changepic.setOnClickListener {
 //
            pickimage()
     }
 
-//
+
+
+
     }
 //
     private fun pickimage() {
