@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="50dp"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgshow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:padding="15dp"
+            android:maxHeight="300dp"
+            android:minHeight="250dp"
+            android:maxWidth="300dp"
+            android:minWidth="250dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_image_24"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar"
+            />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

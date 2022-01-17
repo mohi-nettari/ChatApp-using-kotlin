@@ -42,7 +42,8 @@
             android:scaleType="fitCenter"
 
             android:src="@drawable/ic_image_24"
-    app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar" />
+    app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar" 
+            />
 
 
 

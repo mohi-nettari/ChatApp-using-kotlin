@@ -2,6 +2,7 @@ package com.example.chatappwithkotlin.adapters
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.view.LayoutInflater
@@ -12,7 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chatappwithkotlin.PrivacyActivity
+import com.example.chatappwithkotlin.ViewImageActivity
 import com.example.chatappwithkotlin.model.Messages
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -101,26 +105,34 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
                 .load(curremtImage.msg)
                 .into(holder.simg)
 
-            holder.itemView.setOnLongClickListener {
-                AlertDialog.Builder(contect)
-                    .setTitle("Delete")
-                    .setMessage("Are you sure want to delete this message")
-                    .setPositiveButton(
-                        "Yes"
-                    ) { dialogInterface, i ->
-                        val database = FirebaseDatabase.getInstance()
-                        val senderRoom = FirebaseAuth.getInstance().uid + recId
-                        database.reference.child("Chats").child(senderRoom)
-                            .child("messages")
-                            .child(curremtImage.messageid.toString())
-                            .setValue(null)
-                    }.setNegativeButton(
-                        "No"
-                    ) { dialogInterface, i -> dialogInterface.dismiss() }.show()
-                false
+//            holder.itemView.setOnLongClickListener {
+//                AlertDialog.Builder(contect)
+//                    .setTitle("Delete")
+//                    .setMessage("Are you sure want to delete this message")
+//                    .setPositiveButton(
+//                        "Yes"
+//                    ) { dialogInterface, i ->
+//                        val database = FirebaseDatabase.getInstance()
+//                        val senderRoom = FirebaseAuth.getInstance().uid + recId
+//                        database.reference.child("Chats").child(senderRoom)
+//                            .child("messages")
+//                            .child(curremtImage.messageid.toString())
+//                            .setValue(null)
+//                    }.setNegativeButton(
+//                        "No"
+//                    ) { dialogInterface, i -> dialogInterface.dismiss() }.show()
+//                false
+//            }
+
+
+            holder.simg.setOnClickListener {
+                val intent = Intent(contect, ViewImageActivity::class.java)
+                intent.putExtra("img",curremtImage.msg)
+                with(contect) {
+                    startActivity(intent)
+                }
+
             }
-
-
         }
         else if (holder.javaClass == RecImageViewHolder::class.java){
             val curremtImage = messageslist[position]
@@ -131,6 +143,15 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
                 .load(curremtImage.msg)
               .placeholder(com.example.chatappwithkotlin.R.drawable.ic_image_24)
                 .into(holder.rimg)
+
+            holder.rimg.setOnClickListener {
+                val intent = Intent(contect, ViewImageActivity::class.java)
+                intent.putExtra("img",curremtImage.msg)
+                with(contect) {
+                    startActivity(intent)
+                }
+
+            }
 
         }
     }

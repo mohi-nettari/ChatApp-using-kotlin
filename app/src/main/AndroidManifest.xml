@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatAppWithKotlin">
         <activity
+            android:name=".ViewImageActivity"
+            android:exported="true" />
+        <activity
             android:name=".PrivacyActivity"
             android:exported="true" />
         <activity

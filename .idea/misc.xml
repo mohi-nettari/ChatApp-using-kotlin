@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/layout/activity_privacy.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_regestration.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_view_image.xml" value="0.1274062816616008" />
         <entry key="app/src/main/res/layout/image_message.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_action_bar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/receiver_image_message.xml" value="0.1274062816616008" />
@@ -44,6 +45,7 @@
         <entry key="app/src/main/res/layout/sender_image_message.xml" value="0.2" />
         <entry key="app/src/main/res/layout/sender_msg.xml" value="0.25" />
         <entry key="app/src/main/res/layout/user_lay.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/view_image.xml" value="0.1274062816616008" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.2462962962962963" />
       </map>
     </option>
