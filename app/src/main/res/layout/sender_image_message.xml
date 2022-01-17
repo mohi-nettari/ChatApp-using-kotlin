@@ -12,16 +12,14 @@
         android:layout_height="wrap_content"
 
         android:layout_alignParentEnd="true"
-
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
 
-        android:padding="6dp"
-
+        android:padding="5dp"
         android:gravity="end"
 
-        android:background="@drawable/bg_img_sender"
+        android:background="@color/trans"
 
 
         >
@@ -33,9 +31,7 @@
 
             android:adjustViewBounds="true"
 
-           android:padding="10dp"
-
-
+           android:padding="15dp"
             android:maxHeight="300dp"
             android:minHeight="250dp"
             android:maxWidth="300dp"
@@ -48,32 +44,25 @@
             android:src="@drawable/ic_image_24"
     app:shapeAppearance="@style/ShapeAppearanceOverlay.Avatar" />
 
-        />
-
 
 
         <TextView
-                android:id="@+id/stxttimee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:id="@+id/stxttimee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-                android:layout_below="@+id/simg"
-                android:layout_alignEnd="@+id/simg"
-
+            android:layout_below="@+id/simg"
+            android:layout_alignEnd="@+id/simg"
             android:gravity="end"
-                android:layout_marginEnd="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="15dp"
-                android:padding="10dp"
+            android:padding="15dp"
 
-                android:fontFamily="@font/robotolight"
-                android:text="03/12/2022  3:00 PM"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
+            android:fontFamily="@font/robotolight"
+            android:text="03/12/2022  3:00 PM"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
 
-
-
-
+    </RelativeLayout>
 </RelativeLayout>

@@ -51,8 +51,8 @@
                 android:hint="Enter Your Name"
                 android:inputType="textPersonName"
                 android:padding="15dp"
-                android:textColor="@color/lightgrey"
-                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textColorHint="@color/lightgrey"
                 android:textSize="20sp" />
         </LinearLayout>
 

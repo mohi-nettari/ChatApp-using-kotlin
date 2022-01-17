@@ -42,6 +42,7 @@ class Messages {
         this.type = type
     }
 
+
     constructor(
         msg: String?,
         uid: String?,
@@ -54,6 +55,22 @@ class Messages {
         this.receiverid = receiverid
         this.isSeen = isSeen
         this.type = type
+
+    }
+    constructor(
+        msg: String?,
+        uid: String?,
+        receiverid: String?,
+        isSeen: Boolean?,
+        type: String?,
+        messageid: String?
+    ) {
+        this.msg = msg
+        this.uid = uid
+        this.receiverid = receiverid
+        this.isSeen = isSeen
+        this.type = type
+        this.messageid = messageid
 
     }
 
@@ -73,6 +90,24 @@ class Messages {
         this.timstamp = timstamp
         this.isSeen = isSeen
         this.type = type
+    }
+
+    constructor(
+        msg: String?,
+        uid: String?,
+        receiverid: String?,
+        timstamp: Date?,
+        isSeen: Boolean?,
+        type: String?,
+        messageid: String?
+    ) {
+        this.msg = msg
+        this.uid = uid
+        this.receiverid = receiverid
+        this.timstamp = timstamp
+        this.isSeen = isSeen
+        this.type = type
+        this.messageid = messageid
     }
 
 

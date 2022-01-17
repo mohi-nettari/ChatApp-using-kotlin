@@ -1,6 +1,7 @@
 package com.example.chatappwithkotlin
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -18,6 +19,10 @@ import okhttp3.internal.Version
 import java.util.HashMap
 import java.util.jar.Manifest
 import android.os.Build.VERSION.SDK_INT
+import android.view.KeyEvent
+import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -56,14 +61,17 @@ class SettingsActivity : AppCompatActivity() {
         changepic = findViewById(R.id.changepic)
         privacy = findViewById(R.id.Privacy)
 
-        backarrow = findViewById(R.id.Privacy)
+        backarrow = findViewById(R.id.backarrowset)
 
 
         supportActionBar?.hide()
 
+        //getting users info
+        gettingusersinfo()
 
+        //on enter key event
+        onEnterKey()
 
-        //back arrow event
         //back arrow event
         backarrow.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -72,20 +80,7 @@ class SettingsActivity : AppCompatActivity() {
 
         //updating user information
         savebtn.setOnClickListener {
-            val userName: String = usernameet.text.toString()
-            val status: String = aboutet.text.toString()
-            if (userName.isEmpty()) {
-                return@setOnClickListener
-            }
-
-            val obj = HashMap<String, Any>()
-            obj["name"] = userName
-            obj["status"] = status
-            mDb.getReference().child("Users").child(mAuth.currentUser!!.uid)
-                .updateChildren(obj)
-            Toast.makeText(this@SettingsActivity, "Your Information Saved", Toast.LENGTH_SHORT)
-                .show()
-
+           updateuserinfo()
         }
 
 
@@ -97,7 +92,42 @@ class SettingsActivity : AppCompatActivity() {
         }
 
 
-        //getting user information
+
+
+        //changing the user profile pic
+        changepic.setOnClickListener {
+//
+           pickimage()
+    }
+
+
+
+
+    }
+
+
+    //updating user's information
+    private fun updateuserinfo(){
+        val userName: String = usernameet.text.toString()
+        val status: String = aboutet.text.toString()
+        if (userName.isEmpty()) {
+            return
+        }
+
+        val obj = HashMap<String, Any>()
+        obj["name"] = userName
+        obj["status"] = status
+        mDb.getReference().child("Users").child(mAuth.currentUser!!.uid)
+            .updateChildren(obj)
+        Toast.makeText(this@SettingsActivity, "Your Information Saved", Toast.LENGTH_SHORT)
+            .show()
+        hideMyKeyBoard()
+    }
+
+
+
+    //getting user information
+    private fun gettingusersinfo(){
         mDb.getReference().child("Users")
             .child(mAuth.currentUser!!.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -119,18 +149,34 @@ class SettingsActivity : AppCompatActivity() {
 
             })
 
-
-        //changing the user profile pic
-        changepic.setOnClickListener {
-//
-           pickimage()
     }
 
 
+    //handling on enter key click event
+private fun onEnterKey(){
+    aboutet.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+            updateuserinfo()
+            return@OnKeyListener true
+        }
 
+        false
+    })
 
+}
+
+    //hiding yhe keyboard
+    private fun hideMyKeyBoard(){
+        val view = this.currentFocus
+
+            if(view != null){
+                  val hidemode = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hidemode.hideSoftInputFromWindow(view.windowToken,0)
+                }
+
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }
-//
+
     private fun pickimage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -164,6 +210,8 @@ class SettingsActivity : AppCompatActivity() {
 
         }
     }
+
+
 }
 
 

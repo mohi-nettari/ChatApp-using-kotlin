@@ -1,18 +1,25 @@
 package com.example.chatappwithkotlin.adapters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chatappwithkotlin.model.Imagemsg
 import com.example.chatappwithkotlin.model.Messages
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
+import java.util.jar.Manifest
 
-class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messages>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messages>,val recId : String): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val ITEM_SENT = 1
     val ITEM_REC = 2
@@ -34,6 +41,7 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
     class SentImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val  simg = itemView.findViewById<ImageView>(com.example.chatappwithkotlin.R.id.simg)
         val stxttime  = itemView.findViewById<TextView>(com.example.chatappwithkotlin.R.id.stxttimee)
+
     }
     class RecImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val  rimg= itemView.findViewById<ImageView>(com.example.chatappwithkotlin.R.id.rimg)
@@ -93,6 +101,26 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
                 .load(curremtImage.msg)
                 .into(holder.simg)
 
+            holder.itemView.setOnLongClickListener {
+                AlertDialog.Builder(contect)
+                    .setTitle("Delete")
+                    .setMessage("Are you sure want to delete this message")
+                    .setPositiveButton(
+                        "Yes"
+                    ) { dialogInterface, i ->
+                        val database = FirebaseDatabase.getInstance()
+                        val senderRoom = FirebaseAuth.getInstance().uid + recId
+                        database.reference.child("Chats").child(senderRoom)
+                            .child("messages")
+                            .child(curremtImage.messageid.toString())
+                            .setValue(null)
+                    }.setNegativeButton(
+                        "No"
+                    ) { dialogInterface, i -> dialogInterface.dismiss() }.show()
+                false
+            }
+
+
         }
         else if (holder.javaClass == RecImageViewHolder::class.java){
             val curremtImage = messageslist[position]
@@ -131,5 +159,22 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
     override fun getItemCount(): Int {
         return messageslist.size
     }
+
+//    fun getper(){
+//        val externalReadPer = android.Manifest.permission.READ_EXTERNAL_STORAGE.toString()
+//        val externalWritePer = android.Manifest.permission.WRITE_EXTERNAL_STORAGE.toString()
+//        if(ContextCompat.checkSelfPermission(contect,externalReadPer)!= PackageManager.PERMISSION_DENIED
+//            && ContextCompat.checkSelfPermission(contect,externalWritePer) != PackageManager.PERMISSION_DENIED
+//        ){
+//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//
+//
+//            }
+//
+//        }
+//
+//    }
+
+
 }
 
