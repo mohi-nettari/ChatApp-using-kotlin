@@ -20,6 +20,7 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -211,13 +212,18 @@ class ChatActivity : AppCompatActivity() {
 
     //sending messages to the database
     private fun sendMsg(msg: String, senderId: String, recieverId: String, b: Boolean, type: String) { etmsg.setText("")
+        val calendar = Calendar.getInstance()
+        val currentdate = SimpleDateFormat("MM/DD /yyyy")
+        val  savecurrentdate = currentdate.format(calendar.time).toString()
+        val currenttime = SimpleDateFormat("HH:MM a")
+       val savecurrenttime = currenttime.format(calendar.time).toString()
 
         mDatabaseref.child("Chats")
             .child(senderRoom).child("messages").push()
-            .setValue(Messages(msg, senderId, recieverId, false, "message"))
+            .setValue(Messages(msg, senderId, recieverId, savecurrentdate+"\n"+savecurrenttime , false, "message"))
             .addOnSuccessListener {
                 mDatabaseref.child("Chats").child(recieverRoom).child("messages").push()
-                    .setValue(Messages(msg, senderId, recieverId, false, "message"))
+                    .setValue(Messages(msg, senderId, recieverId, savecurrentdate+"\n"+savecurrenttime ,false, "message"))
                     .addOnSuccessListener {
                         messagesrcv.scrollToPosition(messageslist.size - 1);
 
@@ -242,10 +248,18 @@ class ChatActivity : AppCompatActivity() {
 //
 //                SImageBmp.compress(Bitmap.CompressFormat.JPEG,90,OutputStream)
 //                val SImageBytes = OutputStream.toByteArray()
+
+                val calendar = Calendar.getInstance()
+                val currentdate = SimpleDateFormat("MM/DD /yyyy")
+                val  savecurrentdate = currentdate.format(calendar.time).toString()
+                val currenttime = SimpleDateFormat("HH:MM a")
+                val savecurrenttime = currenttime.format(calendar.time).toString()
+
                 val reference: StorageReference =
                     mDbstorage.getReference().child("ImageMessages")
                         .child(senderRoom)
-                        .child(images)
+                        .child(savecurrentdate+savecurrenttime)
+
 
                 reference.putFile(SImagePath!!).addOnSuccessListener {
                     reference.downloadUrl.addOnSuccessListener { uri ->
@@ -257,7 +271,8 @@ class ChatActivity : AppCompatActivity() {
                                     uri.toString(),
                                     senderId,
                                     recieverId,
-                                    Calendar.getInstance().time,
+                                    savecurrentdate+"\n"+
+                                            savecurrenttime,
                                     false,
                                     "image"
                                 )
@@ -270,7 +285,8 @@ class ChatActivity : AppCompatActivity() {
                                             uri.toString(),
                                             senderId,
                                             recieverId,
-                                            Calendar.getInstance().time,
+                                            savecurrentdate+"\n"+
+                                                    savecurrenttime,
                                             false,
                                             "image"
                                         )
@@ -318,7 +334,7 @@ class ChatActivity : AppCompatActivity() {
                                         uri.toString(),
                                         senderId,
                                         recieverId,
-                                        Calendar.getInstance().time,
+                                        Calendar.getInstance().time.toString(),
                                         false,
                                         "image"
                                     )
@@ -331,7 +347,7 @@ class ChatActivity : AppCompatActivity() {
                                                 uri.toString(),
                                                 senderId,
                                                 recieverId,
-                                                Calendar.getInstance().time,
+                                                Calendar.getInstance().time.toString(),
                                                 false,
                                                 "image"
                                             )

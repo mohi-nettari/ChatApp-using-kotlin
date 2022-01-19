@@ -89,12 +89,15 @@ class MessageAdapter (val contect : Context , val messageslist : ArrayList<Messa
             val currentMessage = messageslist[position]
             val viewHolder = holder as SentViewHolder
             holder.txtmsgsent.text = currentMessage.msg
+            holder.txttimesent.text = currentMessage.timstamp
 
 
         }else if(holder.javaClass == ReceiveViewHolder::class.java){
             val currentMessage = messageslist[position]
             val viewHolder = holder as ReceiveViewHolder
             holder.txtmsgrec.text = currentMessage.msg
+            holder.txttimerec.text = currentMessage.timstamp
+
 
         }
         else if (holder.javaClass == SentImageViewHolder::class.java){

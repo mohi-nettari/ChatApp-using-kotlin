@@ -8,7 +8,7 @@ class Messages {
     var uid : String? = null
     var receiverid : String? = null
     var messageid : String? = null
-    var timstamp : Date? = null
+    var timstamp : String? = null
     var isSeen : Boolean? = null
     var type : String? = null
 
@@ -21,7 +21,7 @@ class Messages {
         uid: String?,
         receiverid: String?,
         messageid : String?,
-        timstamp: Date?,
+        timstamp: String?,
         isSeen: Boolean?,
         type: String?
         ) {
@@ -80,7 +80,7 @@ class Messages {
         msg: String?,
         uid: String?,
         receiverid: String?,
-        timstamp: Date?,
+        timstamp: String?,
         isSeen: Boolean?,
         type: String?
     ) {
@@ -96,7 +96,7 @@ class Messages {
         msg: String?,
         uid: String?,
         receiverid: String?,
-        timstamp: Date?,
+        timstamp: String?,
         isSeen: Boolean?,
         type: String?,
         messageid: String?
